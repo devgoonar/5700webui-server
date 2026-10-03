@@ -1,0 +1,93 @@
+name: Build Linux Desktop
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Linux build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+        
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.5'
+        channel: 'stable'
+        
+    - name: Get dependencies
+      run: |
+        cd flutter_app
+        flutter pub get
+        
+    - name: Run tests
+      run: |
+        cd flutter_app
+        flutter test --no-pub
+      continue-on-error: true
+
+    - name: Enable Linux build
+      run: flutter config --enable-linux-desktop
+        
+    - name: Build Linux Desktop (x86_64)
+      run: |
+        cd flutter_app
+        flutter build linux --release
+        
+    - name: Package Linux Build
+      run: |
+        cd flutter_app/build/linux/x64/release
+        tar -czf ../../../../NetBox5700-Linux-x86_64.tar.gz .
+        
+    - name: Upload Linux Binary Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-x86_64
+        path: NetBox5700-Linux-x86_64.tar.gz
+
+  create-linux-release:
+    needs: build-linux
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: write
+      packages: write
+    
+    steps:
+    - name: Download Linux Binary
+      uses: actions/download-artifact@v4
+      with:
+        name: linux-x86_64
+        path: ./artifacts/linux
+        
+    - name: Create or Update Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./artifacts/linux/NetBox5700-Linux-x86_64.tar.gz
+        generate_release_notes: true
+        draft: true
+        prerelease: true
+        tag_name: "v1.0.6-linux-\${{ github.run_number }}"
+        name: "NetBox 5700 Linux x86_64 Build \${{ github.run_number }}"
+        body: |
+          ## NetBox 5700 Linux x86_64
+          
+          ### 下载：
+          - **Linux x86_64 Desktop Tarball** (`.tar.gz`)
+      env:
+        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+
