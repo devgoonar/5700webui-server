@@ -1,5 +1,6 @@
 
 | English | Chinese |
+|---|---|
 
 # 5700webui-server
 
