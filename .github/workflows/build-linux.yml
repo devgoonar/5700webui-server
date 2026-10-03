@@ -86,4 +86,4 @@ jobs:
           ### 下载：
           - **Linux x86_64 Desktop Tarball** (`.tar.gz`)
       env:
-        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }} # 移除了反斜杠 (Removed backslash)
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 移除了反斜杠 (Removed backslash)
