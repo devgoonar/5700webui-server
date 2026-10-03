@@ -101,9 +101,6 @@ flutter_app/
 ```
 
 ## ReadMe | 开发指南
-| | |
-|---|---|
-| For details, read | 详见 |
 [flutter_app/README.md](flutter_app/README.md)
 
 ## License | 许可证
