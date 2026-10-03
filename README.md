@@ -49,40 +49,41 @@ flutter pub get
 flutter build apk --release --split-per-abi
 ```
 
-## APK 体积
+## APK Size | APK 体积
+| | |
+|---|---|
+| - **Universal**: 52.3 MB | - **通用版**: 52.3 MB (所有架构) |
+| - **arm64-v8a**: 19.4 MB (Modern phones; recommended) | - **arm64-v8a**: 19.4 MB (现代手机，推荐) |
+| - **armeabi-v7a**: 17.0 MB (Older devices) | - **armeabi-v7a**: 17.0 MB (旧设备) |
+| - **x86_64**: 20.6 MB (Emulators) | - **x86_64**: 20.6 MB (模拟器) |
 
-- **通用版**: 52.3 MB (所有架构)
-- **arm64-v8a**: 19.4 MB (现代手机，推荐)
-- **armeabi-v7a**: 17.0 MB (旧设备)
-- **x86_64**: 20.6 MB (模拟器)
+## Using the Interface | 使用说明
 
-## 使用说明
+### 1. Connect to your MT5700M-CN | 1. 连接设备
 
-### 1. 连接设备
+| - Open the app and go to the "Settings" page. | - 打开应用，进入"设置"页面 |
+| - Configure the TCP connection (default: 192.168.8.1:20249). | - 配置 TCP 连接（默认: 192.168.8.1:20249 |
+| - Enable "Auto-connect". | - 启用"自动连接" |
 
-- 打开应用，进入"设置"页面
-- 配置 TCP 连接（默认: 192.168.8.1:20249）
-- 启用"自动连接"
+### 2. Sending AT Commands | AT 控制台
 
-### 2. AT 控制台
+| - Enter AT commands on the "AT Console" page | - 在"AT控制台"页面输入 AT 命令 |
+| - View real-time responses (auto-scroll to the latest) | - 查看实时响应（自动滚动到最新） |
+| - Use quick command buttons | - 使用快捷命令按钮 |
 
-- 在"AT控制台"页面输入 AT 命令
-- 查看实时响应（自动滚动到最新）
-- 使用快捷命令按钮
+### 3. Web Interface | 3. Web 界面
 
-### 3. Web 界面
+| - Click the "Web Interface" tab. | - 点击"Web界面"标签 |
+| - The app uses an embedded WebView to access the management interface. | - 应用内嵌 WebView 访问管理界面 |
+| - The WebSocket server runs on port 8765. | - WebSocket 服务器运行在 8765 端口 |
 
-- 点击"Web界面"标签
-- 应用内嵌 WebView 访问管理界面
-- WebSocket 服务器运行在 8765 端口
+## Configuration | 配置说明
 
-## 配置说明
+| - **TCP Address**: 192.168.8.1:20249 (MT5700M-CN default) | - **TCP 地址**: 192.168.8.1:20249 (5700 模块默认) |
+| - **WebSocket Port**: 8765 | - **WebSocket 端口**: 8765 |
+| - **Theme Mode**: Follow System/Light/Dark | - **主题模式**: 跟随系统/浅色/深色 |
 
-- **TCP 地址**: 192.168.8.1:20249 (5700 模块默认)
-- **WebSocket 端口**: 8765
-- **主题模式**: 跟随系统/浅色/深色
-
-## 项目结构
+## Application Structure | 项目结构
 
 ```
 flutter_app/
@@ -99,20 +100,25 @@ flutter_app/
 └── android/             # Android 平台配置
 ```
 
-## 开发指南
+## ReadMe | 开发指南
+| | |
+|---|---|
+| For details, read | 详见 |
+[flutter_app/README.md](flutter_app/README.md)
 
-详见 [flutter_app/README.md](flutter_app/README.md)
-
-## 许可证
+## License | 许可证
 
 MIT License
 
-## 更新日志
+## Changelog | 更新日志
+
+### v1.0.0.1 (2026-10-02)
+- Added English Translation
 
 ### v1.0.0 (2025-10-10)
-- ✅ 初始版本发布
-- ✅ TDesign 配色系统
-- ✅ 深色模式支持
-- ✅ 自动滚动日志
-- ✅ WebUI 集成
-- ✅ 分架构 APK (体积优化)
+| - ✅ Initial release | - ✅ 初始版本发布 |
+| - ✅ TDesign color system | - ✅ TDesign 配色系统 |
+| - ✅ Dark mode support | - ✅ 深色模式支持 |
+| - ✅ Auto-scrolling logs | - ✅ 自动滚动日志 |
+| - ✅ WebUI integration | - ✅ WebUI 集成 |
+| - ✅ Architecture-specific APKs (size optimization) | - ✅ 分架构 APK (体积优化) |
