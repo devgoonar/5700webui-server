@@ -15,7 +15,7 @@
 | - ✅ Real-time Logs - Auto-scrolling display | - ✅ 实时日志 - 自动滚动显示
 | - ✅ Configuration Management - Persistent settings | - ✅ 配置管理 - 持久化设置
 
-## 技术栈
+## Backend Details | 技术栈
 | | |
 |---|---|
 | - **Framework**: Flutter 3.7+ | - **Framework**: Flutter 3.7+ |
@@ -24,21 +24,23 @@
 | - **Networking**: dart:io Socket (TCP), shelf (HTTP/WebSocket) | - **网络**: dart:io Socket (TCP), shelf (HTTP/WebSocket) |
 | - **Local Storage**: shared_preferences | - **本地存储**: shared_preferences |
 
-## 快速开始
+## Getting Started | 快速开始
 
-### 安装 APK
-
-直接安装编译好的 APK（推荐 arm64-v8a 版本）：
+### Installing APK | 安装 APK
+| | |
+|---|---|
+| Install the compiled APK with shell | 直接安装编译好的 APK（推荐 arm64-v8a 版本）： |
 
 ```bash
 adb install -r build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
 ```
 
-### 从源码构建
-
-1. 安装 Flutter SDK (3.7+)
-2. 克隆项目并进入目录
-3. 获取依赖并构建：
+### Building From Source | 从源码构建
+| | |
+|---|---|
+| 1. Install the Flutter SDK (3.7+) | 1. 安装 Flutter SDK (3.7+) |
+| 2. Clone the project and navigate to the directory | 2. 克隆项目并进入目录 |
+| 3. Fetch dependencies and build: | 3. 获取依赖并构建：|
 
 ```bash
 cd flutter_app
