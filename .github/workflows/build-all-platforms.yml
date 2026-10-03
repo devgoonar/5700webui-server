@@ -150,8 +150,54 @@ jobs:
         name: ios-ipa
         path: flutter_app/build/ios/iphoneos/NetBox5700-iOS.ipa
 
+  # 新增的 Linux x86 编译任务 (Added Linux x86_64 compilation job)
+  build-linux:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Linux build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+        
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.5'
+        channel: 'stable'
+        
+    - name: Get dependencies
+      run: |
+        cd flutter_app
+        flutter pub get
+        
+    - name: Enable Linux build
+      run: flutter config --enable-linux-desktop
+        
+    - name: Build Linux Desktop (x86_64)
+      run: |
+        cd flutter_app
+        flutter build linux --release
+        
+    - name: Package Linux Build
+      run: |
+        cd flutter_app/build/linux/x64/release
+        tar -czf ../../../../NetBox5700-Linux-x86_64.tar.gz .
+        
+    - name: Upload Linux Binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-x86_64
+        path: NetBox5700-Linux-x86_64.tar.gz
+
   create-release:
-    needs: [build-android, build-macos, build-ios]
+    needs: [build-android, build-macos, build-ios, build-linux] # 确保等待 linux 构建完成
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     permissions:
@@ -176,6 +222,12 @@ jobs:
       with:
         name: ios-ipa
         path: ./artifacts/ios
+
+    - name: Download Linux Binary
+      uses: actions/download-artifact@v4
+      with:
+        name: linux-x86_64
+        path: ./artifacts/linux
         
     - name: Create Release
       uses: softprops/action-gh-release@v1
@@ -187,6 +239,7 @@ jobs:
           ./artifacts/android/app-x86_64-release.apk
           ./artifacts/macos/NetBox5700.dmg
           ./artifacts/ios/NetBox5700-iOS.ipa
+          ./artifacts/linux/NetBox5700-Linux-x86_64.tar.gz
         generate_release_notes: true
         draft: true
         prerelease: true
@@ -197,6 +250,7 @@ jobs:
           
           ### 下载：
           - **Android APK** (通用 / ARM64 / ARMv7 / x86_64)
+          - **Linux x86_64 Desktop Tarball**
           - **macOS DMG**
           - **iOS IPA** (需重签名)
           
