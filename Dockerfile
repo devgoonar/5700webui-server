@@ -1,14 +1,14 @@
-# Step 1: Use a clean, stable base image
-FROM debian:bookworm-slim
+# Step 1: Use an updated base image that natively supports modern GLib versions
+FROM debian:trixie-slim
 
-# Step 2: Install required native desktop dependencies for the Flutter Engine
+# Step 2: Install required system dependencies, curl, and tar
 RUN apt-get update && apt-get install -y \
     curl \
+    tar \
     libgtk-3-0 \
     liblzma5 \
     libstdc++6 \
     && rm -rf /var/lib/apt/lists/*
-
 # Step 3: Set the internal workspace directory
 WORKDIR /app
 
