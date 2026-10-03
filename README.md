@@ -60,25 +60,29 @@ flutter build apk --release --split-per-abi
 ## Using the Interface | 使用说明
 
 ### 1. Connect to your MT5700M-CN | 1. 连接设备
-
+| | |
+|---|---|
 | - Open the app and go to the "Settings" page. | - 打开应用，进入"设置"页面 |
 | - Configure the TCP connection (default: 192.168.8.1:20249). | - 配置 TCP 连接（默认: 192.168.8.1:20249 |
 | - Enable "Auto-connect". | - 启用"自动连接" |
 
 ### 2. Sending AT Commands | AT 控制台
-
+| | |
+|---|---|
 | - Enter AT commands on the "AT Console" page | - 在"AT控制台"页面输入 AT 命令 |
 | - View real-time responses (auto-scroll to the latest) | - 查看实时响应（自动滚动到最新） |
 | - Use quick command buttons | - 使用快捷命令按钮 |
 
 ### 3. Web Interface | 3. Web 界面
-
+| | |
+|---|---|
 | - Click the "Web Interface" tab. | - 点击"Web界面"标签 |
 | - The app uses an embedded WebView to access the management interface. | - 应用内嵌 WebView 访问管理界面 |
 | - The WebSocket server runs on port 8765. | - WebSocket 服务器运行在 8765 端口 |
 
 ## Configuration | 配置说明
-
+| | |
+|---|---|
 | - **TCP Address**: 192.168.8.1:20249 (MT5700M-CN default) | - **TCP 地址**: 192.168.8.1:20249 (5700 模块默认) |
 | - **WebSocket Port**: 8765 | - **WebSocket 端口**: 8765 |
 | - **Theme Mode**: Follow System/Light/Dark | - **主题模式**: 跟随系统/浅色/深色 |
@@ -110,9 +114,13 @@ MIT License
 ## Changelog | 更新日志
 
 ### v1.0.0.1 (2026-10-02)
-- Added English Translation
+| | |
+|---|---|
+| - Added English Translation | - 已添加英文译文 |
 
 ### v1.0.0 (2025-10-10)
+| | |
+|---|---|
 | - ✅ Initial release | - ✅ 初始版本发布 |
 | - ✅ TDesign color system | - ✅ TDesign 配色系统 |
 | - ✅ Dark mode support | - ✅ 深色模式支持 |
