@@ -1,9 +1,7 @@
 name: Build Linux Desktop
 
 on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch: # 允许手动触发
+  workflow_dispatch: # 只允许手动触发 (Only allows manual triggering)
 
 jobs:
   build-linux:
