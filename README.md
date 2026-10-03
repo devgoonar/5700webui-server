@@ -3,7 +3,7 @@
 | English | Chinese |
 |---|---|
 | Flutter-based WebUI management application for MT5700M-CN | 基于 Flutter 的 5700 模块 WebUI 管理应用 |
-| Key Features | 功能特点 |
+| ## Key Features | 功能特点 |
 | - ✅ AT Command Console - Direct communication with the 5700 module | - ✅ AT 命令控制台 - 直接与 5700 模块通信
 | - ✅ WebSocket Server - Interface for the web frontend | - ✅ WebSocket 服务器 - 为 Web 前端提供接口
 | - ✅ Static HTTP Server - Built-in web management interface | - ✅ HTTP 静态服务器 - 内置 Web 管理界面
