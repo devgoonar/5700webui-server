@@ -1,17 +1,20 @@
+
+| English | Chinese |
+
 # 5700webui-server
 
-基于 Flutter 的 5700 模块 WebUI 管理应用
+| Flutter-based WebUI management application for MT5700M-CN | 基于 Flutter 的 5700 模块 WebUI 管理应用 |
 
-## 功能特点
+## | Key Features | 功能特点 |
 
-- ✅ AT 命令控制台 - 直接与 5700 模块通信
-- ✅ WebSocket 服务器 - 为 Web 前端提供接口
-- ✅ HTTP 静态服务器 - 内置 Web 管理界面
-- ✅ WebView 集成 - 在应用内访问 Web 界面
-- ✅ TCP 直连模式 - 连接 192.168.8.1:20249
-- ✅ 深色/浅色主题 - TDesign/Ant Design 配色
-- ✅ 实时日志 - 自动滚动显示
-- ✅ 配置管理 - 持久化设置
+| - ✅ AT Command Console - Direct communication with the 5700 module | - ✅ AT 命令控制台 - 直接与 5700 模块通信
+| - ✅ WebSocket Server - Interface for the web frontend | - ✅ WebSocket 服务器 - 为 Web 前端提供接口
+| - ✅ Static HTTP Server - Built-in web management interface | - ✅ HTTP 静态服务器 - 内置 Web 管理界面
+| - ✅ WebView Integration - Access the web interface within the app | - ✅ WebView 集成 - 在应用内访问 Web 界面
+| - ✅ TCP Direct Connection Mode - Connect to 192.168.8.1:20249 | - ✅ TCP 直连模式 - 连接 192.168.8.1:20249
+| - ✅ Dark/Light Themes - TDesign/Ant Design color schemes | - ✅ 深色/浅色主题 - TDesign/Ant Design 配色
+| - ✅ Real-time Logs - Auto-scrolling display | - ✅ 实时日志 - 自动滚动显示
+| - ✅ Configuration Management - Persistent settings | - ✅ 配置管理 - 持久化设置
 
 ## 技术栈
 
