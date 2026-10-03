@@ -46,9 +46,9 @@ jobs:
         
     - name: Package Linux Build
       run: |
-        # 进入 Flutter 生成的 bundle 目录进行打包 (Enter the bundle directory)
         cd flutter_app/build/linux/x64/release/bundle
-        tar -czf ../../../../../NetBox5700-Linux-x86_64.tar.gz .
+        tar -czf $GITHUB_WORKSPACE/NetBox5700-Linux-x86_64.tar.gz .
+
         
     - name: Upload Linux Binary Artifact
       uses: actions/upload-artifact@v4
