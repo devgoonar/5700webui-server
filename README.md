@@ -16,7 +16,8 @@
 | - ✅ Configuration Management - Persistent settings | - ✅ 配置管理 - 持久化设置
 
 ## 技术栈
-
+| | |
+|---|---|
 | - **Framework**: Flutter 3.7+ | - **Framework**: Flutter 3.7+ |
 | - **State Management**: GetX | - **状态管理**: GetX |
 | - **UI**: Material Design 3 + TDesign color scheme | - **UI**: Material Design 3 + TDesign 配色 |
