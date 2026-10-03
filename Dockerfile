@@ -1,14 +1,22 @@
-# Step 1: Use an updated base image that natively supports modern GLib versions
-FROM debian:trixie-slim
+# Step 1: Use the highly stable bookworm base that works perfectly on Synology Kernels
+FROM debian:bookworm-slim
 
-# Step 2: Install required system dependencies, curl, and tar
-RUN apt-get update && apt-get install -y \
+# Step 2: Inject the backports repository configuration and update packages securely
+RUN echo "deb http://deb.debian.org/debian bookworm-backports main" > /etc/apt/sources.get-system-repositories.list \
+    || echo "deb http://deb.debian.org/debian bookworm-backports main" > /etc/apt/sources.list.d/backports.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
     curl \
     tar \
     libgtk-3-0 \
     liblzma5 \
     libstdc++6 \
+    && apt-get install -t bookworm-backports -y \
+    libc6 \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
 # Step 3: Set the internal workspace directory
 WORKDIR /app
 
