@@ -17,11 +17,11 @@
 
 ## 技术栈
 
-- **Framework**: Flutter 3.7+
-- **状态管理**: GetX
-- **UI**: Material Design 3 + TDesign 配色
-- **网络**: dart:io Socket (TCP), shelf (HTTP/WebSocket)
-- **本地存储**: shared_preferences
+| - **Framework**: Flutter 3.7+ | - **Framework**: Flutter 3.7+ |
+| - **State Management**: GetX | - **状态管理**: GetX |
+| - **UI**: Material Design 3 + TDesign color scheme | - **UI**: Material Design 3 + TDesign 配色 |
+| - **Networking**: dart:io Socket (TCP), shelf (HTTP/WebSocket) | - **网络**: dart:io Socket (TCP), shelf (HTTP/WebSocket) |
+| - **Local Storage**: shared_preferences | - **本地存储**: shared_preferences |
 
 ## 快速开始
 
