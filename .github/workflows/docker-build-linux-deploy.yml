@@ -1,0 +1,91 @@
+name: Docker Build & Linux Deploy
+
+on:
+  workflow_dispatch: # 允许从 GitHub UI 手动触发
+
+jobs:
+  docker-compile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Run Build inside Docker Container
+      run: |
+        docker run --rm \
+          -v \${{ github.workspace }}:/workspace \
+          -w /workspace/flutter_app \
+          debian:bookworm-slim /bin/bash -c "
+            # 1. 安装 Linux 编译依赖和必要工具 (Install system dependencies)
+            apt-get update && apt-get install -y \
+              curl git unzip xz-utils zip file \
+              clang cmake ninja-build pkg-config \
+              libgtk-3-dev liblzma-dev libstdc++-12-dev \
+              sudo
+
+            # 2. 安装与配置特定版本的 Flutter (Install exact Flutter SDK version)
+            git clone https://github.com -b 3.35.5 /opt/flutter
+            export PATH=\"\$PATH:/opt/flutter/bin\"
+            
+            # 标记工作目录安全以防 Git 报错
+            git config --global --add safe.directory /workspace
+            
+            # 3. 构建应用 (Fetch packages & compile production x86_64 desktop binary)
+            flutter doctor
+            flutter config --enable-linux-desktop
+            flutter pub get
+            flutter build linux --release
+            
+            # 4. 提取并压缩归档 (Package the binary and its asset libraries)
+            cd build/linux/x64/release
+            tar -czf /workspace/NetBox5700-Docker-Linux-x86_64.tar.gz .
+          "
+
+    - name: Upload Docker-Built Binary Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-linux-x86_64
+        path: NetBox5700-Docker-Linux-x86_64.tar.gz
+
+  deploy-release:
+    needs: docker-compile
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Download Built Tarball
+      uses: actions/download-artifact@v4
+      with:
+        name: docker-linux-x86_64
+        path: ./artifacts
+        
+    - name: Deploy to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./artifacts/NetBox5700-Docker-Linux-x86_64.tar.gz
+        generate_release_notes: true
+        draft: true
+        prerelease: true
+        tag_name: "v1.0.6-docker-linux-\${{ github.run_number }}"
+        name: "NetBox 5700 Docker Linux Build \${{ github.run_number }}"
+        body: |
+          ## NetBox 5700 Linux (Docker Build Edition)
+          
+          ### 运行环境 / Runtime Requirements:
+          - Standard x86_64 Linux Environment (Ubuntu, Debian, Fedora, etc.)
+          - GLIBC compatible distribution
+          
+          ### 下载 / Download:
+          - **[Download]** `NetBox5700-Docker-Linux-x86_64.tar.gz`
+      env:
+        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+
