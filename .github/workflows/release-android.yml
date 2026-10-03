@@ -1,9 +1,6 @@
 name: Release Android APK
 
 on:
-  push:
-    tags:
-      - 'v*'  # 当推送版本标签时触发
   workflow_dispatch: # 手动触发
 
 jobs:
