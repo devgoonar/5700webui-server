@@ -61,7 +61,7 @@ jobs:
   create-linux-release:
     needs: build-linux
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main''
+    if: github.ref == 'refs/heads/main'
     permissions:
       contents: write
       packages: write
