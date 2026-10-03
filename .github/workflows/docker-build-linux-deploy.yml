@@ -87,5 +87,5 @@ jobs:
           ### 下载 / Download:
           - **[Download]** `NetBox5700-Docker-Linux-x86_64.tar.gz`
       env:
-        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
