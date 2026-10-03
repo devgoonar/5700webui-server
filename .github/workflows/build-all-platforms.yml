@@ -195,7 +195,7 @@ jobs:
   create-release:
     needs: [build-android, build-macos, build-ios, build-linux] # 确保等待 linux 构建完成
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main'
     permissions:
       contents: write
       packages: write

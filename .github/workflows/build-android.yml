@@ -58,7 +58,7 @@ jobs:
           flutter_app/build/app/outputs/flutter-apk/app-x86_64-release.apk
         
     - name: Create Draft Release (on main branch)
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
         files: |

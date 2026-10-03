@@ -48,7 +48,7 @@ jobs:
         path: flutter_app/build/macos/Build/Products/Release/NetBox5700.dmg
         
     - name: Create Draft Release (on main branch)
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
         files: flutter_app/build/macos/Build/Products/Release/NetBox5700.dmg
